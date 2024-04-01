@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.3-dist/css/bootstrap.css'%}" />
+    <link rel="stylesheet" href="{% static "css/home.css" %}" />
+    <link rel="stylesheet" href="{% static "css/navbar.css" %}" />
+    <script src="{% static "js/home.js" %}" defer></script>
+  </head>
+  <body>
+    <div class="home">
+      <nav>
+        <div class="navbar">
+          <div class="logo">
+            <img src="{% static "pic/logo.jpg" %}" width="60" height="60" />
+          </div>
+          <div class="link">
+            <a href="" class="active">Home</a>
+            <a href="/blog/blog.html">Blog</a>
+            <a href="">Contact</a>
+            <a href="{% url 'pro' %}">
+              <img src="{{image}}" width="40" height="32" />
+          </a>
+          </div>
+          <div class="right">
+            <a href="{% url 'log' %}">
+              <button>Login</button>
+          </a>
+            <a href=""><button>Sign-up</button></a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- ______________________________________________________________________________________________________________ -->
+
+      <div class="section1">
+        <div class="center">
+          <h1>psychology</h1>
+          <p>
+            Psychology is a vital branch of social sciences, focusing on understanding human behavior, cognition, and the influence of internal and external factors
+          </p>
+          <button>learn more</button>
+        </div>
+      </div>
+      <!-- ______________________________________________________________________________________________________________ -->
+      <div class="section2 continar">
+        <div class="start">
+          <div class="image">
+            <img
+              src="{%static 'pic/WhatsApp Image 2024-03-21 at 21.18.21_798bad2b.jpg'%}"
+              alt=""
+            />
+          </div>
+          <div class="text">
+            <p>Psychology is the scientific study of behavior and mind</p>
+            <p>and it is considered one of the most important social</p>
+            <p>
+              and behavioral sciences that are concerned with understanding the
+              human mind and behavior.
+            </p>
+            <p>The history of psychology dates back to ancient times,</p>
+            <p>
+              where there were attempts to understand the nature of the human
+              mind and its behavior
+            </p>
+            <p>
+              but studies and research in this field have developed
+              significantly through the ages
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- ______________________________________________________________________________________________________________ -->
+
+      <div class="section3 continar">
+        <img
+          src="{%static 'pic/WhatsApp Image 2024-03-21 at 21.18.21_798bad2b.jpg'%}"
+          data-text="Wundt founded the first official laboratory of psychological research at the University of Leipzig in 1879. Psychology emerged as an independent field of study. By creating this laboratory, he was able to establish psychology as a separate science from other fields. He formed the first academic journal for psychological research, philosophical studies (from 1881 to 1902), which was established to publish the Institute's research."
+        /><img
+          src="{% static "pic/sin 2.jpg" %}"
+          data-text="Sigmund Shlomo Freud, known by the acronym Sigmund Freud, is an Austrian physician of Jewish origin, a specialist in the study of neurological medicine and a freelance thinker who is considered the founder of psychoanalysis. He is an Austrian neurologist who founded the School of Psychoanalysis and Modern Psychology."
+        /><img
+          src="{% static "pic/sin 3.jpg" %}"
+          data-text="Aristotle, Aristotle or Aristotle, nicknamed the First Teacher, was a Greek philosopher, a student of Plato and a teacher of Alexander the Great. He is considered the founder of the Lycian School and the School of Peripatetic Philosophy and Aristotelian Tradition, and one of the great thinkers."
+        /><img
+          src="{% static "pic/sin 4.jpg" %}"
+          data-text="Plato is Aristocles son of Ariston, a classical Greek, mathematician, writer of a number of philosophical dialogues, and is considered the founder of the Academy of Athens, the first institute of higher education in the Western world, his teacher Socrates and his student Aristotle. Plato laid the first foundations of Western philosophy and science. He was a disciple of Socrates, and was as influenced by his ideas as he was by his unjust execution."
+        />
+      </div>
+      <!-- ______________________________________________________________________________________________________________ -->
+
+      <!-- ______________________________________________________________________________________________________________ -->
+      <div class="container">
+        <footer
+          class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top"
+        >
+          <div class="col mb-3">
+            <a
+              href="/"
+              class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none"
+            >
+              <img src="{% static "pic/logo.jpg" %}" width="40" height="32" alt="" />
+            </a>
+            <p class="text-body-secondary">© 2024</p>
+          </div>
+
+          <div class="col mb-3"></div>
+
+          <div class="col mb-3">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary">Home</a>
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary"
+                  >Features</a
+                >
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary">FAQs</a>
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary">About</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col mb-3">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary">Home</a>
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary"
+                  >Features</a
+                >
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary">FAQs</a>
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary">About</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col mb-3">
+            <h5>Section</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary">Home</a>
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary"
+                  >Features</a
+                >
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary">FAQs</a>
+              </li>
+              <li class="nav-item mb-2">
+                <a href="#" class="nav-link p-0 text-body-secondary">About</a>
+              </li>
+            </ul>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

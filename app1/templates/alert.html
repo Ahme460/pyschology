@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <style>
+        :root {
+            --main-color: #0d6efd;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        .acount {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(3, auto);
+            padding: 20px 60px;
+        }
+
+        .acount .edit {
+            text-align: center;
+        }
+
+        .acount .edit h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .acount .edit form {
+            display: grid;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .acount .edit form label {
+            font-weight: bold;
+        }
+
+        .acount .edit form input[type="text"],
+        .acount .edit form textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
+            resize: vertical; /* Allow vertical resizing of textarea */
+        }
+
+        .acount .edit form input[type="file"] {
+            display: none; /* Hide the default file input */
+        }
+
+        .acount .edit form .file-upload {
+            background-color: #f0f0f0;
+            border: 2px dashed #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            cursor: pointer;
+        }
+
+        .acount .edit form .file-upload:hover {
+            border-color: var(--main-color);
+        }
+
+        .acount .edit form .file-upload p {
+            margin-bottom: 10px;
+        }
+
+        .acount .edit form input[type="submit"] {
+            padding: 10px 16px;
+            color: white;
+            background-color: var(--main-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        .acount .edit form input[type="submit"]:hover {
+            background-color: #0a58ca;
+        }
+
+        .acount .current-image {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .acount .current-image img {
+            max-width: 200px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<div class="acount">
+    <div class="edit">
+        <h2>Edit Profile</h2>
+        <div class="current-image">
+            {% if current_image %}
+            <img src="{{ current_image }}" alt="Current Profile Image">
+            {% else %}
+            <p>No image available</p>
+            {% endif %}
+        </div>
+        <form action="#" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="image-upload" class="file-upload">
+                <p>Click here to upload a new image</p>
+                <input type="file" id="image-upload" name="image">
+            </label>
+            
+            <label for="about_me">About Me:</label>
+            <textarea id="about_me" name="about_me" rows="4" style="font-size: 16px;" >{{ about_me }}</textarea>
+
+            <label for="experience">Experience:</label>
+            <input type="text" id="experience" name="experience" value="{{ experience }}" style="font-size: 16px;" >
+
+            <label for="certificates">Certificates:</label>
+            <input type="text" id="certificates" name="certificates" value="{{ certificates }}" style="font-size: 16px;" >
+
+            <input type="submit" value="Save">
+        </form>
+    </div>
+</div>
+</body>
+</html>

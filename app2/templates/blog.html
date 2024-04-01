@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static "css/navbar.css" %}" />
+    <link rel="stylesheet" href="{% static "css/blogs.css" %}" />
+    <link rel="stylesheet" href="{% static "bootstrap-5.3.3-dist/css/bootstrap.css" %}" />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="{% static "js/blog.js" %}" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="blog">
+      <nav>
+        <div class="navbar">
+          <div class="logo">
+            <img src="{% static "pic/logo.jpg" %}" width="60" height="60" />
+          </div>
+          <div class="link">
+            <a href="/home/home.html">Home</a>
+            <a href="" class="active">Blog</a>
+            <a href="">Contact</a>
+            <a href=""
+              ><img src="{{image}}" width="40" height="32"
+            /></a>
+          </div>
+          <div class="right">
+            <a href="/log in/login.html"><button>Login</button></a>
+            <a href=""><button>Sign-up</button></a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- ______________________________________________________________________________________________________________ -->
+      <div class="contant">
+    <form action="" method='post'>
+        <div class="dow">
+            <input type="text" name='title' class="input" placeholder="Title" />
+            <textarea name="blog" id="" placeholder="Write Here"></textarea>
+            <div class="chose">
+              <input type="file" name='image' name="" id="image" />
+              <label for="image">
+                <ion-icon name="images"></ion-icon>
+              </label>
+              <input type="file" name="" id="video" />
+              <label for="video">
+                <ion-icon name="videocam"></ion-icon>
+              </label>
+            </div>
+            <div class="button">
+              <input type='submit'>Share</input>
+            </div>
+    </form>
+     {% for post in posts %}
+        </div>
+        <div class="posts">
+          <div class="post">
+            <img id="showimg" src="{{post.image}}" />
+          
+            <p id="date"></p>
+            <h2>{{post.title}}</h2>
+            <div class="text">
+             {{post.content}}
+            </div>
+            <div class="button">
+              <a href="{% url "one_post" post.id %}"><button>Learn More</button></a>
+            </div>
+            {% endfor %} 
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

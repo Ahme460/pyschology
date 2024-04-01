@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "css/acount.css" %}" />
+    
+  </head>
+  <body>
+    <div class="acount">
+      <div class="name">
+        <h1>Profile</h1>
+        <p>I am a student in the psychology department</p>
+      </div>
+      <div class="contant">
+        <div class="aboutme">
+          <h3>About me</h3>
+          <p>
+            {{about}}
+          </p>
+        </div>
+        <div class="image"><img src="{{image_url}}" id="image" /></div>
+        <div class="details">
+          <h3>Details</h3>
+          <div class="information">
+            <h4>Name:</h4>
+            <p id="name">{{username}}</p>
+            <h4>Age:</h4>
+            <p>{{age}}</p>
+            <h4>Email:</h4>
+            <p>{{email}}</p>
+            <h4>Experience:</h4>
+            <p id="Experience"> {{exper}}</p>
+            <h4>Certificates:</h4>
+            <p id="Certificates">{{cer}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="edit">
+       <a  href='{% url 'alert' %}'> <button id="but">Modify the account</button> </a>
+      </div>
+    </div>
+  </body>
+</html>

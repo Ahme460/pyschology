@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{% static 'css/register.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/login.js' %}" rel="script" />
+
+</head>
+
+<body>
+  <div class="login-box">
+    <h1>register</h1>
+    <div class="textbox">
+      {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+      </ul> <!-- يجب إغلاق العنصر ul هنا -->
+      {% endif %} <!-- يجب إغلاق تعليمة الشرط هنا -->
+      <i class="fas fa-user"></i>
+      <form method='post'>
+        {% csrf_token %}
+        <div class="form">
+            <label for="email">Email</label>
+
+            <input type="email" id="email" name='email'>
+
+            <label for="password">Password</label>
+
+            <input type="password" id="password" name='password'>
+
+            <label for="username">username</label>
+            <input type="text" id="username" name='username'>
+
+            <label for="select">choose your category</label>
+            <select id="select" name="category">
+              <option value="student">student</option>
+              <option value="instructor">instructor</option>
+              <option value="person">Someone who wants treatment</option>
+            </select>
+
+            <input type="submit" id="submit" value="Submit">
+        </div>
+      </form> <!-- يجب إغلاق النموذج form هنا -->
+    </div>
+  </div>
+</body>
+</html>

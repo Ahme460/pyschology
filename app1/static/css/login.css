@@ -1,0 +1,73 @@
+body{
+    background-image: url(background.jpg);
+    background-size: cover;
+    font-family: sans-serif;
+}
+.login{
+    background-color: rgba(255, 255, 255, 0.416);
+    backdrop-filter: blur(10px);
+    width: 150px;
+    height: 50px;
+    overflow: hidden;
+    position: absolute;
+    right: 50%;
+    transform: translate(50%,-50%);
+    text-align: center;
+    padding: 0 15px;
+    color: white;
+display: flex;
+flex-direction: column;
+justify-content: center;
+
+h1{
+    /* display: none; */
+    opacity: 0;
+}
+
+    form{
+        display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+
+    input{
+        background-color: transparent;
+        border: 0;
+        border-bottom: 1px solid white;
+        padding: 10px;
+opacity: 0;
+    }
+
+    input:focus{
+        outline: 0;
+    }
+
+    button{
+        padding: 10px 0;
+        cursor: pointer;
+        border: none;
+    font-size: 20px;
+opacity: 0;
+    }
+
+    div{
+        opacity: 0;
+        span{
+            color: black;
+        }
+
+        a{
+            margin-left: 10px;
+        }
+        
+    }
+
+    }
+
+
+
+}
+::placeholder{
+    font-size: 17px;
+    color: rgba(0, 0, 0, 0.587);
+}
