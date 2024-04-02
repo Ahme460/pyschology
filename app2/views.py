@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from . models import Post
-from app1.models import Profile
+from . models import Post , Comment
+from app1.models import Profile,CustomUser
 from django.shortcuts import get_object_or_404
 from django.core.files.storage import default_storage
 from django.conf import settings
@@ -51,14 +51,29 @@ def blogs(request):
     }
     return render(request, 'blog.html', context=context)
 
-def one_blog (request,id):
-    post=Post.objects.get(id=id)
+def one_blog(request, id):
+    username = request.session.get('username')
+    author = CustomUser.objects.get(username=username)
+    profile=Profile.objects.get(user=author)
+
+    post = Post.objects.get(id=id)
     print(post)
 
+    comment = ''
 
-    context={
-        "post":post
+    if request.method == 'POST':
+        comment = request.POST.get('comment')
+
+    if len(comment) >= 1:
+        comm = Comment(content=comment, post=post, author=author)
+        comm.save()
+
+    comments = Comment.objects.filter(post=post)
+
+    context = {
+        "post": post,
+        "comments": comments,
+        'profile':profile
     }
 
-
-    return render(request,'post.html',context=context)
+    return render(request, 'post.html', context=context)

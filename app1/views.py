@@ -9,23 +9,7 @@ from django.core.files.storage import default_storage
 from django.conf import settings
 import os
 
-def home_view(request):
-    username = request.session.get('username')
-    user = CustomUser.objects.get(username=username)  # Retrieve the user object using the username
-    print(username)
 
-    profiles = Profile.objects.filter(user=user)  # Filter profiles by the user object
-
-    image_url = None  # Initialize image_url to None
-    if profiles.exists():  # Check if any profiles exist for the user
-        profile = profiles.first()  # Get the first profile object
-        if profile.image:  # Check if the profile has an image
-            image_url = settings.MEDIA_URL + str(profile.image)
-
-    context = {
-        "image": image_url
-    }
-    return render(request, 'home.html', context=context)
 
 def register_view(request):
     if request.method == 'POST':
@@ -64,6 +48,28 @@ def login_view(request):
 
     return render(request, 'login.html')
 
+from django.shortcuts import render
+from django.conf import settings
+from .models import Profile
+from django.contrib.auth import get_user_model
+
+def home_view(request):
+    username = request.session.get('username')
+    User = get_user_model()
+    user = User.objects.get(username=username)  # Retrieve the user object using the username
+    profile = Profile.objects.get(user=user)  # Get the profile object for the user
+
+    if profile.image.url == '/media/default.jpg':
+        has_image = False
+    else:
+        has_image = True
+
+    context = {
+        'profile': profile,
+        'has_image': has_image,
+    }
+    return render(request, 'home.html', context=context)
+
 def profile1(request):
      
     username = request.session.get('username')
@@ -79,6 +85,12 @@ def profile1(request):
         image_url = settings.MEDIA_URL + str(profile.image)
     
 
+    if profile.image.url == '/media/default.jpg':
+        has_image = False
+    else:
+        has_image = True
+    
+
     context={
 
 'username': username,
@@ -86,7 +98,8 @@ def profile1(request):
 'image_url': image_url,
 'exper':exper,
 'cer':cer,
-'about':about_me
+'about':about_me,
+'has_image': has_image
 
 
 

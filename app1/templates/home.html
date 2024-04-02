@@ -22,7 +22,11 @@
             <a href="/blog/blog.html">Blog</a>
             <a href="">Contact</a>
             <a href="{% url 'pro' %}">
-              <img src="{{image}}" width="40" height="32" />
+              {% if has_image %}
+              <img src="{{ profile.image.url }}" width="40" height="32" />
+          {% else %}
+              <img src="{% static 'pic/default.png' %}" style="width: 30px; height: auto;" alt="Default Profile Image">
+          {% endif %}
           </a>
           </div>
           <div class="right">

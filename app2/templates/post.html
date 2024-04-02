@@ -1,15 +1,22 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="post.css" />
+    <link rel="stylesheet" href="{% static "css/post.css" %}" />
+    <style>
+      .comments img {
+        max-width: 20px; /* تحديد عرض الصورة الأقصى */
+        max-height: 20px; /* تحديد ارتفاع الصورة الأقصى */
+      }
+    </style>
   </head>
   <body>
     <div class="allpage">
       <div class="image">
-        <img src="/emc.png" />
+        <img src="/media/{{ post.image }}" />
       </div>
       <div class="text">
         <div class="title">
@@ -19,22 +26,26 @@
           {{post.content}}
         </p>
         <div class="coment">
-          <form action="">
-            <input type="text" placeholder="Write Coment" />
+          <form action="" method='post'>
+            {% csrf_token %}
+            <input type="text" name='comment' placeholder="Write Comment" />
             <button>Submit</button>
           </form>
         </div>
-        <div class="coments">
+
+        {% for comment in comments %}
+        <div class="comments">
           <div class="one">
-            <img src="/1671483463688.jpg" />
+            <img src="/media/{{profile.image}}" />
             <div class="name">
-              <h3>mohamed hassan</h3>
-              <p>Lorem, ipsum dolor.</p>
+              <h3>{{comment.author}}</h3>
+              <p>{{comment.content}}</p>
             </div>
           </div>
         </div>
+        {% endfor %}
       </div>
-      <a href="/blog/blog.html">X</a>
+      <a href="{% url 'blog' %}">X</a>
     </div>
   </body>
 </html>

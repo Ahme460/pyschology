@@ -21,7 +21,19 @@
             {{about}}
           </p>
         </div>
-        <div class="image"><img src="{{image_url}}" id="image" /></div>
+        {% if has_image %}
+        <div class="image"> 
+          <img src="{{ image_url }}"  />
+        </div>
+       
+      {% else %}
+      <div class="image"> 
+        <img src="{% static 'pic/default.png' %}" style="width: 30px; height: auto;" alt="Default Profile Image">
+      </div>
+        {% endif %}
+
+
+        
         <div class="details">
           <h3>Details</h3>
           <div class="information">

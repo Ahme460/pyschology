@@ -28,7 +28,7 @@ class Profile(models.Model):
     email = models.EmailField(max_length=100)
     experience = models.TextField()
     certificates = models.TextField()
-    image = models.ImageField(upload_to='profile_pic')
+    image = models.ImageField(upload_to='profile_pic',default='default.jpg')
 
     about_me = models.TextField(default='')
     def __str__(self) -> str:
