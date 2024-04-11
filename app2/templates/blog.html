@@ -63,24 +63,20 @@
 
         <div class="posts">
           {% for post in posts %}
-          <div class="post">
-           
-            <img id="showimg" src="/media/{{ post.image }}" />
-          
-            <p id="date"></p>
-            <h2>{{post.title}}</h2>
-            <div class="text">
-             {{post.content}}
+            <div class="post">
+              {% if post.image %}
+                <img id="showimg" src="/media/{{ post.image }}" />
+              {% endif %}
+              <p id="date"></p>
+              <h2>{{ post.title }}</h2>
+              <div class="text">
+                {{ post.content |slice:":10" }}
+              </div>
+              <div class="button">
+                <a href="{% url 'one_post' post.id %}"><button>Learn More</button></a>
+              </div>
             </div>
-            <div class="button">
-              <a href="{% url "one_post" post.id %}"><button>Learn More</button></a>
-              
-            </div>
-            
-           
-            
-          </div>
-          {% endfor %} 
+          {% endfor %}
         </div>
       </div>
     </div>

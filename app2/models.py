@@ -30,3 +30,14 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content
+    
+
+
+
+class Jobs(models.Model):
+    title=models.CharField(max_length=100)
+    descrbtion=models.TextField()
+    image=models.ImageField()
+    place=models.CharField(max_length=100)
+    skills=models.TextField()
+

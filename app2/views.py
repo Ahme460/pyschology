@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from . models import Post , Comment
+from . models import Post , Comment,Jobs
 from app1.models import Profile,CustomUser
 from django.shortcuts import get_object_or_404
 from django.core.files.storage import default_storage
@@ -67,8 +67,13 @@ def one_blog(request, id):
     if len(comment) >= 1:
         comm = Comment(content=comment, post=post, author=author)
         comm.save()
+    comments=list
 
     comments = Comment.objects.filter(post=post)
+    print("type cooments is : "+ str(type(comments)))
+
+    
+
 
     context = {
         "post": post,
@@ -77,3 +82,57 @@ def one_blog(request, id):
     }
 
     return render(request, 'post.html', context=context)
+
+
+def jobs(request):
+    import sys
+
+    user=request.session.get('username')
+    user1=Profile.objects.get(username=user)
+    if user1.image:
+        image_url = settings.MEDIA_URL + str(user1.image)
+    
+    jobss=[]
+    jobs=Jobs.objects.all()
+    jobss=list(jobs)
+    size_in_bytes = sys.getsizeof(jobs[0])
+    print("size: "+str(size_in_bytes))
+    lista=[[],[],[],[]]
+    for i in jobs:
+        lista[0].append(i.title)
+        lista[1].append(i.descrbtion)
+        lista[2].append(i.place)
+        lista[3].append(i.skills)
+    ahmed=0
+    for i in range(len(lista[0])):
+        ahmed+=1
+
+
+    print("ahmed is equl: "+str(ahmed))
+
+    
+    print(lista)
+    print(sys.getsizeof(("size: "+str(lista))))
+
+    
+    context={
+        'image':image_url,
+        'list2':lista[2],
+        
+    
+        'list':lista,
+    
+    }
+    
+
+
+    
+    
+
+
+
+
+  
+
+
+    return render(request,'jobs.html' ,context=context)

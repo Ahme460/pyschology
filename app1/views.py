@@ -87,8 +87,10 @@ def profile1(request):
 
     if profile.image.url == '/media/default.jpg':
         has_image = False
+       
     else:
         has_image = True
+       
     
 
     context={
@@ -117,6 +119,7 @@ def alert(request):
         profile_ex = profile.experience
         profile_cer = profile.certificates
         profile_about_me=profile.about_me
+        
 
         if 'image' in request.FILES:
             # Delete the old image if it exists
@@ -125,8 +128,10 @@ def alert(request):
                 if default_storage.exists(file_path):
                     default_storage.delete(file_path)
             profile.image = request.FILES['image']
+    
 
         profile.about_me = request.POST.get('about_me')
+        
         profile.experience = request.POST.get('experience')
         profile.certificates = request.POST.get('certificates')
 
@@ -141,6 +146,12 @@ def alert(request):
         profile.certificates = constant(request.POST.get('certificates'), profile_cer)
         profile.about_me = constant(request.POST.get('about_me'),profile_about_me )
         profile.save()
+        
+
+        context={
+            "about_me": profile_about_me
+        }
+        return redirect('pro')
 
 
     return render(request, 'alert.html')

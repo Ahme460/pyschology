@@ -1,0 +1,64 @@
+/* تنسيق العناصر الرئيسية */
+
+.home {
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+/* تنسيق العناصر في القسم الثاني */
+.section2 {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* تنسيق الوظيفة */
+.job {
+    border: 1px solid #0d6efd;
+    padding: 20px;
+    transition: transform 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.job:hover {
+    transform: scale(1.1);
+}
+
+/* تنسيق عنوان الوظيفة */
+.job h2 {
+    color: #0d6efd;
+}
+
+/* تنسيق التفاصيل في القسم الثاني */
+.text {
+    text-align: center;
+}
+
+/* تنسيق العناصر في القسم الرابع */
+.post {
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* تنسيق النص في العنصر المنبثق */
+.job-details {
+    text-align: center;
+    color: #17181a;
+    transform: scale(1.1);
+}
+
+/* تنسيق المزيد من المميزات */
+.job-details p {
+    margin-bottom: 10px;
+}
+
+.job-details span {
+    cursor: pointer;
+}

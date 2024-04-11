@@ -19,8 +19,10 @@
           </div>
           <div class="link">
             <a href="" class="active">Home</a>
-            <a href="/blog/blog.html">Blog</a>
+            <a href="{%  url "blog" %}">Blog</a>
+
             <a href="">Contact</a>
+
             <a href="{% url 'pro' %}">
               {% if has_image %}
               <img src="{{ profile.image.url }}" width="40" height="32" />
@@ -46,7 +48,7 @@
           <p>
             Psychology is a vital branch of social sciences, focusing on understanding human behavior, cognition, and the influence of internal and external factors
           </p>
-          <button>learn more</button>
+          <button href='section2 continar' >learn more</button>
         </div>
       </div>
       <!-- ______________________________________________________________________________________________________________ -->
@@ -81,7 +83,7 @@
 
       <div class="section3 continar">
         <img
-          src="{%static 'pic/WhatsApp Image 2024-03-21 at 21.18.21_798bad2b.jpg'%}"
+          src="{%static 'pic/sin 1.jpg'%}"
           data-text="Wundt founded the first official laboratory of psychological research at the University of Leipzig in 1879. Psychology emerged as an independent field of study. By creating this laboratory, he was able to establish psychology as a separate science from other fields. He formed the first academic journal for psychological research, philosophical studies (from 1881 to 1902), which was established to publish the Institute's research."
         /><img
           src="{% static "pic/sin 2.jpg" %}"

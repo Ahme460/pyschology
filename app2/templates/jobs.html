@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" href="{% static "css/navbar.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/jobs.css" %}">
+</head>
+<body>
+
+
+    <nav>
+        <div class="navbar">
+          <div class="logo">
+            <img src="{% static "pic/logo.jpg" %}" width="60" height="60" />
+          </div>
+          <div class="link">
+            <a href="/home/home.html">Home</a>
+            <a href="" class="active">Blog</a>
+            <a href="">Contact</a>
+            <a href="{% url 'pro' %}"
+              ><img src="{{image}}" width="40" height="32"
+            /></a>
+          </div>
+          <div class="right">
+            <a href="/log in/login.html"><button>Login</button></a>
+            <a href=""><button>Sign-up</button></a>
+          </div>
+        </div>
+      </nav>
+
+
+
+
+
+
+
+
+
+
+    <div class="home">
+        <div class="job-details">
+            <h1>jobs</h1>
+            <br>
+        </div>
+        {% for i in list.0 %}
+        <div class="jobs-list">
+            <div class="job">
+                <div class="image">
+                    <img src="{{ 1image }}" alt="صورة الوظيفة 1">
+                </div>
+                <div class="text">
+                    <h2>{{ i }}</h2>
+                    <p>{{ list2.1 }}</p>
+                    <a href="وظيفة1.html">تفاصيل الوظيفة</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    
+    
+    
+        
+
+
+
+
+            <!-- إضافة وظائف أخرى -->
+        </div>
+    </div>
+</body>
+</html>
