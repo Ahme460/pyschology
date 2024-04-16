@@ -42,22 +42,23 @@
             <h1>jobs</h1>
             <br>
         </div>
-        {% for i in list.0 %}
+        {% for job in list %}
         <div class="jobs-list">
             <div class="job">
                 <div class="image">
-                    <img src="{{ 1image }}" alt="صورة الوظيفة 1">
+                    <img src="{{ job.4.url }}" alt="صورة الوظيفة 1">
+                </div>
+                <div class='pp'>
+                <p>  {{job.1|slice:":20" }}  </p>
                 </div>
                 <div class="text">
-                    <h2>{{ i }}</h2>
-                    <p>{{ list2.1 }}</p>
-                    <a href="وظيفة1.html">تفاصيل الوظيفة</a>
+                    <h2>{{ job.0 }}</h2>
+                    <p>{{ job.2 }}</p>
+                    <a href="{% url 'jop' job.5 %}"><button>Learn More</button></a>
                 </div>
             </div>
         </div>
     {% endfor %}
-    
-    
     
         
 

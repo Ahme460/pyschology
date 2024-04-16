@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from . models import Post , Comment,Jobs
+from . models import Post , Comment,Jobs,Research,Books_un
 from app1.models import Profile,CustomUser
 from django.shortcuts import get_object_or_404
 from django.core.files.storage import default_storage
 from django.conf import settings
-
-
+from reportlab.pdfgen import canvas
 
 # Create your views here.
 def blogs(request):
@@ -91,36 +90,62 @@ def jobs(request):
     user1=Profile.objects.get(username=user)
     if user1.image:
         image_url = settings.MEDIA_URL + str(user1.image)
-    
+  
     jobss=[]
     jobs=Jobs.objects.all()
-    jobss=list(jobs)
+  
     size_in_bytes = sys.getsizeof(jobs[0])
     print("size: "+str(size_in_bytes))
-    lista=[[],[],[],[]]
-    for i in jobs:
-        lista[0].append(i.title)
-        lista[1].append(i.descrbtion)
-        lista[2].append(i.place)
-        lista[3].append(i.skills)
-    ahmed=0
-    for i in range(len(lista[0])):
-        ahmed+=1
 
 
-    print("ahmed is equl: "+str(ahmed))
+    lista = [[], [], [], [],[],[]]
+    jobs = list(jobs)  # Assuming `jobs` is a list of objects
+    ahmed = 0
+    length = len(jobs)  # Assuming jobs has elements
+    print(sys.getsizeof(jobs))
+    for job in range(length):
+        lista[0].append(jobs[0].title)
+        lista[1].append(jobs[0].descrbtion)  # Typo? Should it be `description`?
+        lista[2].append(jobs[0].place)
+        lista[3].append(jobs[0].skills)
+        lista[4].append(jobs[0].image)
+        lista[5].append(jobs[0].job_id)
 
-    
-    print(lista)
-    print(sys.getsizeof(("size: "+str(lista))))
 
-    
-    context={
-        'image':image_url,
-        'list2':lista[2],
         
+
+
+        jobs.pop(0)
+        ahmed += 1
     
-        'list':lista,
+    del jobs
+    
+    
+
+   
+
+
+    
+    
+    print(sys.getsizeof(("size: "+str(lista))))
+    combined_list = zip(lista[0], lista[1], lista[2], lista[3],lista[4],lista[5])
+    del lista
+    
+
+    combined_list=list(combined_list)    
+    reversed_list=combined_list[-1:None:-1]
+    combined_list=None
+    print(jobss,combined_list)
+    
+
+    print(type(reversed_list))
+    context={
+       'image':image_url,
+     
+          'combined_list': combined_list,
+          
+    
+        'list':reversed_list,
     
     }
     
@@ -136,3 +161,86 @@ def jobs(request):
 
 
     return render(request,'jobs.html' ,context=context)
+
+
+
+
+
+def jop(request, id):
+    print(id)
+    _jop = Jobs.objects.get(job_id=id)
+
+
+    skills = _jop.skills.splitlines() 
+
+    context = {
+            'jop': _jop,
+            'skills': skills,
+        }
+
+ 
+
+
+
+
+
+    return render(request,'jop.html',context=context)
+
+
+
+
+def research(request):
+
+    research=Research.objects.all()
+
+    conntext={
+        'research':research
+    }
+
+
+    return render(request,'reserch.html',context=conntext)
+from PyPDF2 import PdfReader, PdfWriter
+from django.http import HttpResponse
+
+def books(request):
+    books = Books_un.objects.all()
+
+ 
+   
+
+    # تحقق من وجود كتب
+    if books.exists():
+        book = books.first() 
+
+        # إنشاء كائن Convert وتنفيذ عملية التحويل
+       
+     
+
+    context = {
+        'books': books
+    }
+
+    return render(request, 'books.html', context=context)
+from .con_pd import Convert
+
+
+def down(request):
+    username = request.session.get('username')
+    user = CustomUser.objects.get(username=username)
+    user = str(user)
+    books = Books_un.objects.all()
+
+    # تحقق من وجود كتب
+    if books.exists():
+        book = books.first()
+
+        # إنشاء كائن Convert وتنفيذ عملية التحويل
+        obj = Convert(user, book.book_pdf.path)
+        print(book.book_pdf.path)
+
+        # استدعاء دالة convert من الكائن واستخدام الاستجابة كاستجابة للعميل
+        response = obj.convert()
+        print("done convert")
+
+        return response
+
