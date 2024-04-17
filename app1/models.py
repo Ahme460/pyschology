@@ -9,15 +9,14 @@ class CustomUser(AbstractUser):
     ROLE_CHOICES = (
         ('student', 'student'),
         ('instructor', 'instructor'),
-        ('person', 'Someone who wants treatment'),
+        ('trainee', 'Trainee'),
     )
-    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='normal_user')
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='trainee')
+    age = models.IntegerField(null=True)
+
     def save(self, *args, **kwargs):
         kwargs['using'] = kwargs.get('using', 'default')
         super().save(*args, **kwargs)
-        
-            
-
 
 
 class Profile(models.Model):

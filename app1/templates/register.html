@@ -9,14 +9,45 @@
 
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{% static 'css/register.css' %}" rel="stylesheet" />
-    <link href="{% static 'css/login.js' %}" rel="script" />
+    
+    <script src="{% static 'js/register.js' %}"></script>
 
+
+ 
+    <style>
+      .chose {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      
+      .chose label {
+        padding: 10px 20px;
+        border: 1px solid rgba(128, 128, 128, 0.459);
+        border-radius: 5px;
+        font-size: 13px;
+        transition: all 0.3s;
+      }
+      
+      .active {
+        background-color: var(--main-color);
+        color: white;
+        border: 1px solid transparent;
+      }
+    </style>
 </head>
-
 <body>
-  <div class="login-box">
-    <h1>register</h1>
-    <div class="textbox">
+
+
+
+ 
+
+
+
+  <div class="signup">
+    <div class="logo">
+
       {% if messages %}
       <ul class="messages">
           {% for message in messages %}
@@ -24,31 +55,121 @@
           {% endfor %}
       </ul> <!-- يجب إغلاق العنصر ul هنا -->
       {% endif %} <!-- يجب إغلاق تعليمة الشرط هنا -->
-      <i class="fas fa-user"></i>
-      <form method='post'>
-        {% csrf_token %}
-        <div class="form">
-            <label for="email">Email</label>
+    
+    
 
-            <input type="email" id="email" name='email'>
 
-            <label for="password">Password</label>
 
-            <input type="password" id="password" name='password'>
 
-            <label for="username">username</label>
-            <input type="text" id="username" name='username'>
 
-            <label for="select">choose your category</label>
-            <select id="select" name="category">
-              <option value="student">student</option>
-              <option value="instructor">instructor</option>
-              <option value="person">Someone who wants treatment</option>
-            </select>
+      <h4>What type of user are you?</h4>
+    </div>
+    <form method="post">
+      {% csrf_token %}
+      <div class="chose">
+        <label for="student" class="active" onclick="handleSelection('student')">student</label>
+        <input type="radio" name="one" id="student" value="student"  />
+    
+        <label for="instructor" onclick="handleSelection('instructor')">instructor</label>
+        <input type="radio" name="one" id="instructor" value="instructor"  />
+    
+        <label for="trainee" onclick="handleSelection('trainee')">Trainee</label>
+        <input type="radio" name="one" id="trainee" value="trainee"  />
+    </div>
 
-            <input type="submit" id="submit" value="Submit">
+    
+
+
+    <script>
+      function handleSelection(selection) {
+        const labels = document.querySelectorAll('.chose label');
+        
+        labels.forEach(label => {
+          if (label.getAttribute('for') === selection) {
+            label.classList.add('active');
+          } else {
+            label.classList.remove('active');
+          }
+        });
+      }
+    </script>
+
+
+
+
+      <div class="allinput">
+        <div class="fullname">
+          <label for="fullname"> Full name </label>
+          <input
+            type="text"
+            id="fullname"
+            placeholder="Enter full name"
+            minlength="4"
+            required
+            name="fullname"
+            value="{{ request.POST.fullname }}"
+            name='fullname'
+          />
         </div>
-      </form> <!-- يجب إغلاق النموذج form هنا -->
+        <div class="username">
+          <label for="username"> username </label>
+          <input
+            type="text"
+            id="username"
+            placeholder="Enter username"
+            minlength="4"
+            required
+            name="username"
+            value="{{ request.POST.username }}"
+            name='username'
+          />
+        </div>
+        <div class="email">
+          <label for="email"> Email </label>
+          <input
+            type="email"
+            id="email"
+            placeholder="example@email.com"
+            required
+            name="email"
+            value="{{ request.POST.email }}"
+            name='email'
+          />
+        </div>
+        <div class="pass">
+          <label for="password"> Password </label>
+          <div class="inp">
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter Password"
+              maxlength="12"
+              required
+              name="password"
+          
+            />
+            <p id="eror"></p>
+          </div>
+        </div>
+        <div class="age">
+          <label for="age">Age</label>
+          <input
+            type="number"
+            id="age"
+            placeholder="Enter your Age"
+            required
+            name="age"
+            value="{{ request.POST.age }}"
+            name='age'
+          />
+        </div>
+      </div>
+
+      <button type="submit">Create account</button>
+    </form>
+
+    <div class="have">
+      <p>Already have an account ? <a href="/login/">Log-in</a></p>
     </div>
   </div>
 </body>

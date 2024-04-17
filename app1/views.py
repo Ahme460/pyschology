@@ -13,19 +13,36 @@ import os
 
 def register_view(request):
     if request.method == 'POST':
+        full_name=request.POST.get('fullname')
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        type_ = request.POST.get('category')
+        type_ = request.POST.get('one')
+        age=request.POST.get('age')
+
         request.session['username'] = username
 
-        if username and email and password and type_:
+        lista=full_name.split()
+        first_name=str(lista[0])
+        last_name = ' '.join(str(x) for x in lista[1:])
+
+
+
+
+        if username and email and password and type_ and age and full_name:
             existing_users = CustomUser.objects.filter(Q(username=username) | Q(email=email))
             
             if existing_users:
-                messages.error(request, 'email incorrect')
+                messages.error(request, 'The username or email address is already in use ')
             else:
-                user = CustomUser(username=username, email=email, role=type_)
+                user = CustomUser(username=username, 
+                                  email=email, 
+                                  role=type_,
+                                  first_name=first_name,
+                                  last_name=last_name,
+                                  age=age
+                                  )
+
                 user.set_password(password)
                 user.save()
                 return redirect('log')

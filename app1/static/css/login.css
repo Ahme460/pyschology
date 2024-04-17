@@ -1,73 +1,114 @@
+:root{
+    --main-color:#0d6efd;
+} 
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 body{
-    background-image: url(background.jpg);
-    background-size: cover;
     font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+    background-color: rgba(67, 115, 169, 0.347);
 }
 .login{
-    background-color: rgba(255, 255, 255, 0.416);
-    backdrop-filter: blur(10px);
-    width: 150px;
-    height: 50px;
+    background-color: white;
     overflow: hidden;
-    position: absolute;
-    right: 50%;
-    transform: translate(50%,-50%);
+    padding: 20px 30px;
     text-align: center;
-    padding: 0 15px;
-    color: white;
-display: flex;
-flex-direction: column;
-justify-content: center;
-
-h1{
-    /* display: none; */
-    opacity: 0;
+    position: relative;
+    border-radius: 5px;
+    h1{
+        margin-bottom: 25px;
+        font-size: 25px;
+        z-index: 123;
+        position: relative;
+    }
 }
 
-    form{
-        display: flex;
-    flex-direction: column;
-    gap: 30px;
+.login::before{
+    content: "";
+    position: absolute;
+    background-color: var(--main-color);
+    width: 140px;
+    height: 190%;
+    top: -160px;
+    right: 50%;
+    transform: translateX(50%);
+    
+    animation: rotate 1.5s infinite linear;
+}
+
+.login::after{
+    content: "";
+    position: absolute;
+   background-color: white;
+    inset: 2px;
+}
+
+.login form{
+    display: flex;
+flex-direction: column;
+justify-content: center;
+gap: 30px;
 
 
-    input{
-        background-color: transparent;
-        border: 0;
-        border-bottom: 1px solid white;
-        padding: 10px;
-opacity: 0;
-    }
 
-    input:focus{
-        outline: 0;
-    }
+input{
+    background-color: #e4e0e0;
+    border: 0;
+    border-radius: 5px;
+    padding: 15px 10px;
+    width: 300px;
+    z-index: 123;
+}
 
-    button{
-        padding: 10px 0;
-        cursor: pointer;
-        border: none;
-    font-size: 20px;
-opacity: 0;
-    }
+input:focus{
+    outline: 0;
+}
 
-    div{
-        opacity: 0;
-        span{
-            color: black;
-        }
+button{
+    padding: 10px 0;
+    cursor: pointer;
+    border: none;
+font-size: 20px;
+background-color: var(--main-color);
+color: white;
+border-radius: 5px;
+z-index: 123;
+
+}
+}
+
+    .forgrt{
+        font-size: 15px;
+    z-index: 123;
 
         a{
             margin-left: 10px;
+            color: var(--main-color);
         }
         
     }
 
-    }
 
 
 
-}
 ::placeholder{
     font-size: 17px;
-    color: rgba(0, 0, 0, 0.587);
+} 
+
+
+@keyframes rotate {
+    
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
 }
